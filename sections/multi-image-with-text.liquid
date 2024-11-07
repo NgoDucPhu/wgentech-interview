@@ -1,0 +1,81 @@
+{{ 'section-multi-image-with-text.css' | asset_url | stylesheet_tag }}
+
+<div class="multi-image-with-text">
+  <div class="multi-image-with-text__inner">
+    {%- if section.settings.heading != blank -%}
+      <div class="multi-image-with-text__heading">
+        {{ section.settings.heading }}
+      </div>
+    {%- endif -%}
+    <div class="multi-image-with-text__images">
+      <div class="multi-image-with-text__image">
+        {%- if section.settings.image_first != blank -%}
+          {{
+            section.settings.image_first
+            | image_url: width: 380
+            | image_tag: class: 'multi-image-with-text__picture'
+          }}
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'multi-image-with-text__picture' }}
+        {%- endif -%}
+      </div>
+      <div class="multi-image-with-text__image">
+        {%- if section.settings.image_second != blank -%}
+          {{
+            section.settings.image_second
+            | image_url: width: 380
+            | image_tag: class: 'multi-image-with-text__picture'
+          }}
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'multi-image-with-text__picture' }}
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="multi-image-with-text__text">
+      {{- section.settings.text -}}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Multi image with text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Lorem ullamco"
+    },
+    {
+      "type": "header",
+      "content": "image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_first",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_second",
+      "label": "Image 2"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur eiusmod consectetur proident Lorem reprehenderit esse do anim velit in aliquip dolore ut officia. Consectetur reprehenderit proident do exercitation eu. Sunt fugiat pariatur elit est laboris quis. Esse mollit incididunt quis amet. Qui non irure incididunt laborum nisi cillum consequat aliquip aliquip cillum in. Ut excepteur labore voluptate tempor cupidatat dolor eiusmod do ipsum Lorem cupidatat do labore.</p><p>Proident dolore nisi eiusmod excepteur aliquip esse ut excepteur. Non excepteur sunt reprehenderit sit ex ullamco eiusmod Lorem incididunt nisi mollit nostrud. Irure velit enim elit minim commodo qui culpa cillum duis fugiat consequat pariatur.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multi image with text"
+    }
+  ]
+}
+{% endschema %}
