@@ -1,0 +1,113 @@
+{{ 'section-two-column.css' | asset_url | stylesheet_tag }}
+
+{% if section.blocks.size > 0 %}
+  <div class="two-column">
+    <div class="two-column__inner">
+      {%- for block in section.blocks -%}
+        <div class="two-column__item{% if block.settings.reverse_content %} two-column__item--reverse{% endif %}" style="--two-column-background-color: {{ block.settings.background_color }}; --two-column-text-color: {{ block.settings.text_color }};">
+          <div class="two-column__image">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 684 | image_tag: class: 'two-column__picture' }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'two-column__picture' }}
+            {%- endif -%}
+          </div>
+          <div class="two-column__text">
+            {%- if block.settings.heading != blank -%}
+              <div class="two-column__heading">
+                {{- block.settings.heading -}}
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.description != blank -%}
+              <div class="two-column__description">
+                {{- block.settings.description -}}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Two column",
+  "blocks": [
+    {
+      "name": "Item",
+      "type": "item",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "reverse_content",
+          "label": "Enable reverse content",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "Color"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "#F4F0EA"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#1F1F1F"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two column",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "heading": "Lorem ipsum",
+            "description": "<h4>Excepteur eiusmod consectetur</h4><p>Proident dolore nisi eiusmod excepteur aliquip esse ut excepteur. Non excepteur sunt reprehenderit sit ex ullamco eiusmod Lorem incididunt nisi mollit nostrud. Irure velit enim elit minim commodo qui culpa cillum duis fugiat consequat pariatur.</p><h4>Quis aliqua reprehenderit</h4><p>Proident dolore nisi eiusmod excepteur aliquip esse ut excepteur. Non excepteur sunt reprehenderit sit ex ullamco eiusmod Lorem incididunt nisi mollit nostrud. Irure velit enim elit minim commodo qui culpa cillum duis fugiat consequat pariatur.</p><h4>Ad sit cillum amet duis quis commodo</h4><p>Proident dolore nisi eiusmod excepteur aliquip esse ut excepteur. Non excepteur sunt reprehenderit sit ex ullamco eiusmod Lorem incididunt nisi mollit nostrud. Irure velit enim elit minim commodo qui culpa cillum duis fugiat consequat pariatur.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "reverse_content": true,
+            "heading": "Mollit aliquip do ipsum consectetur",
+            "description": "<p>Ex laborum ea qui consectetur mollit commodo eiusmod culpa dolor cupidatat. Ullamco dolore irure ea sit elit velit non officia. Ad eu reprehenderit in et voluptate mollit. Reprehenderit incididunt magna consequat enim sit eiusmod est dolor laborum cupidatat.</p><p>Ipsum minim mollit irure dolore. Sint fugiat deserunt dolor aute enim et cillum adipisicing cillum nostrud anim. Sit dolore incididunt dolore do sunt pariatur consectetur id qui pariatur eu incididunt adipisicing. Irure sint fugiat officia veniam consectetur. Esse laborum amet aliqua ad in sunt labore duis.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

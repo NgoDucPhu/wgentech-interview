@@ -1,0 +1,124 @@
+.two-column {
+  margin: 80px 0;
+}
+
+.two-column__inner {
+  width: 100%;
+  max-width: 1376px;
+  margin: 0 auto;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.two-column__item {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 8px;
+}
+
+.two-column__image,
+.two-column__text {
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.two-column__picture {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.two-column__text {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: var(--two-column-background-color);
+
+}
+
+.two-column__text * {
+  color: var(--two-column-text-color);
+}
+
+.two-column__heading {
+  font-size: 48px;
+  line-height: 50px;
+  font-family: "Lora", serif;
+}
+
+.two-column__heading + .two-column__description {
+  margin-top: 24px;
+}
+
+.two-column__description * {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+}
+
+.two-column__description h1,
+.two-column__description h2,
+.two-column__description h3,
+.two-column__description h4,
+.two-column__description h5,
+.two-column__description h6 {
+  font-size: 20px;
+  line-height: 30px;
+  color: inherit;
+}
+
+.two-column__description p,
+.two-column__description ul {
+  font-size: 14px;
+  line-height: 22px;
+  color: inherit;
+}
+
+.two-column__description h1 + p,
+.two-column__description h2 + p,
+.two-column__description h3 + p,
+.two-column__description h4 + p,
+.two-column__description h5 + p,
+.two-column__description h6 + p {
+  margin-top: 8px;
+}
+
+.two-column__description p + h1,
+.two-column__description p + h2,
+.two-column__description p + h3,
+.two-column__description p + h4,
+.two-column__description p + h5,
+.two-column__description p + h6 {
+  margin-top: 24px;
+}
+
+.two-column__description p + p {
+  margin-top: 24px;
+}
+
+@media only screen and (min-width: 768px) {
+  .two-column__item {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .two-column__item--reverse .two-column__image {
+    order: 2;
+  }
+  
+  .two-column__image,
+  .two-column__text {
+    height: 100%;
+  }
+
+  .two-column__text {
+    padding: 48px;
+  }
+
+  .two-column__heading {
+    font-size: 64px;
+    line-height: 74px;
+  }
+}
